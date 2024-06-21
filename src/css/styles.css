@@ -1,0 +1,61 @@
+:root {
+	--text: #ffffff;
+	--button: #a1a1a1;
+	--bg: #151515;
+	--bg-dark: #111111;
+	--bg-elevation-1: #212121;
+	--bg-elevation-2: rgba(255, 255, 255, 0.07);
+	--highlight: rgba(255, 255, 255, 0.12);
+	--placeholder: rgba(255, 255, 255, 0.47);
+	--red: #f25f5c;
+	--green: #a4f25c;
+	--blue: #5ceff2;
+	--purple: #a95cf2;
+}
+
+* {
+	font-family: 'Geist', sans-serif;
+	color: var(--text);
+	box-sizing: border-box;
+	line-height: 150%;
+	scrollbar-color: var(--bg-elevation-1) transparent;
+	scrollbar-width: 16px;
+	scroll-behavior: smooth;
+	font-variant-ligatures: none;
+	box-sizing: border-box;
+}
+
+body {
+	background: var(--bg);
+	margin: 0;
+	padding: 0;
+}
+
+.navbar__btn {
+	padding: 8px;
+	border-radius: 8px;
+	display: flex;
+}
+
+.navbar__btn:hover {
+	background-color: var(--bg-elevation-1);
+}
+
+.navbar__btn_enabled {
+	padding: 8px;
+	border-radius: 8px;
+	background-color: var(--bg-elevation-1);
+}
+
+/* This is for code things */
+/* pre {
+	max-width: 768px;
+	width: 100%;
+	border: 1px solid var(--border);
+	background-color: var(--bg-elevation-2);
+	overflow-x: auto;
+	border-radius: 12px;
+	padding: 12px;
+	scrollbar-color: var(--border) transparent;
+	margin: 12px 0px;
+} */
