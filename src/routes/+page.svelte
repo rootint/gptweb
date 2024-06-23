@@ -3,14 +3,14 @@
 	import MessageTextbar from '$lib/components/MessageTextbar.svelte';
 </script>
 
-<main>
+<!-- <main> -->
 	<div class="main-container">
 		<CardGrid></CardGrid>
 	</div>
-	<div class="textfield">
+	<!-- <div class="textfield">
 		<MessageTextbar></MessageTextbar>
-	</div>
-</main>
+	</div> -->
+<!-- </main> -->
 
 <style>
 	.main-container {
@@ -21,7 +21,7 @@
 		justify-content: center;
 		align-items: center;
 	}
-	main {
+	/* main {
 		width: 100%;
 		height: 100vh;
 		display: flex;
@@ -34,5 +34,5 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-	}
+	} */
 </style>

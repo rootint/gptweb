@@ -14,18 +14,18 @@ function createChatStore() {
 
 	async function fetchChatMessages(id) {
 		if (id != '') {
-			// const fetchedMessages = await getMessages(id);
+			const fetchedMessages = await getMessages(id);
 			// const fetchedInstruction = await getInstruction(id);
 			chatId.set(id);
 			// instruction.set(fetchedInstruction);
 			// localStorage.setItem('chatId', id);
 			// localStorage.setItem('instruction', fetchedInstruction);
-			// messages.set(fetchedMessages);
+			messages.set(fetchedMessages);
 		} else {
 			messages.set([]);
 		}
 	}
 
-	return { chats, chatId, fetchChats, fetchChatMessages };
+	return { chats, chatId, messages, fetchChats, fetchChatMessages };
 }
 export const chatStore = createChatStore();
