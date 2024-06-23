@@ -14,8 +14,8 @@
 
 <main>
 	<Navbar></Navbar>
-	<div class="container">
-		<!-- <Sidebar></Sidebar> -->
+	<div class="main-container">
+		<Sidebar></Sidebar>
 		<div class="chat">
 			<slot />
 			<div class="textfield">
@@ -26,7 +26,7 @@
 </main>
 
 <style>
-	.container {
+	.main-container {
 		display: flex;
 		height: 100vh;
 		width: 100vw;

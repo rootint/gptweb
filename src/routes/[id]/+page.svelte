@@ -22,7 +22,7 @@
 		});
 	});
 </script>
-<!-- 
+
 <div class="chat">
 	<div class="gradient-mask"></div>
 	<div class="message-list">
@@ -32,19 +32,20 @@
 			</div>
 		{/each}
 	</div>
-</div> -->
+</div>
 
 <style>
     .message {
         padding: 16px;
     }
 	.chat {
-        padding-top: 96px;
+        /* padding-top: 96px; */
 		height: 100%;
 		display: flex;
 		justify-content: center;
         overflow-y: scroll;
         align-items: center;
+        width: 100%;
 	}
 	.gradient-mask {
 		z-index: 2;
