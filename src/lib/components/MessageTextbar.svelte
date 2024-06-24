@@ -1,5 +1,7 @@
 <script>
 	import { ArrowUp } from 'lucide-svelte';
+	import { page } from '$app/stores';
+	import { chatStore } from '$lib/stores/chatStore';
 
 	const LINE_HEIGHT = 24;
 	let isActive = false;
@@ -8,6 +10,7 @@
 	let isButtonActive = false;
 	let textareaHeight = LINE_HEIGHT;
 	let responsePending = false;
+	$: chatId = $page.params.id;
 
 	function handleFocus() {
 		isActive = true;
@@ -30,7 +33,7 @@
 		message = '';
 		isButtonActive = false;
 		textareaHeight = LINE_HEIGHT;
-		// await chatStore.handleSendMessage(messageCopy, fileToSend, 'user');
+		await chatStore.handleSendMessage(chatId, messageCopy, null);
 		// fileToSend = null;
 	}
 
@@ -65,7 +68,7 @@
 		style="height: {textareaHeight}px;"
 		placeholder="Message ChatGPT..."
 	></textarea>
-	<button class="send-btn" class:btn-active={isButtonActive}>
+	<button on:click={handleMessageSend} class="send-btn" class:btn-active={isButtonActive}>
 		<ArrowUp size="22" color={isButtonActive ? '#111111' : '#212121'}></ArrowUp>
 	</button>
 </div>
@@ -85,8 +88,8 @@
 		transition: background-color 0.2s ease;
 	}
 	.textbar {
-		max-width: 708px;
-		width: 708px;
+		max-width: 740px;
+		width: 100%;
 		background-color: var(--bg-elevation-1);
 		margin-bottom: 20px;
 		border-radius: 12px;

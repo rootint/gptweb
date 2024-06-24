@@ -11,7 +11,7 @@
 	}
 </script>
 
-<div class="flex flex-col items-end">
+<div class="settings-container">
 	<button on:click={toggleSettingsMenu} class="navbar__btn" class:enabled={isToggled}>
 		<div class="icon-wrapper" class:spin={isToggled}>
 			<Settings color={isToggled ? '#f1f1f1' : '#a1a1a1'} size="22"></Settings>
@@ -30,6 +30,11 @@
 </div>
 
 <style>
+    .settings-container {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+    }
 	.settings__input {
 		border-radius: 12px;
 		padding: 16px;

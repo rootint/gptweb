@@ -23,6 +23,11 @@
 	scroll-behavior: smooth;
 	font-variant-ligatures: none;
 	box-sizing: border-box;
+	/* font-weight: 350; */
+}
+
+code {
+	font-family: 'Geist Mono', monospace;
 }
 
 main {
@@ -55,14 +60,109 @@ body {
 }
 
 /* This is for code things */
-/* pre {
-	max-width: 768px;
+pre {
+	max-width: 740px;
 	width: 100%;
 	border: 1px solid var(--border);
-	background-color: var(--bg-elevation-2);
+	background-color: var(--bg-elevation-1);
 	overflow-x: auto;
 	border-radius: 12px;
 	padding: 12px;
-	scrollbar-color: var(--border) transparent;
+	scrollbar-color: var(--bg-elevation-2) transparent;
 	margin: 12px 0px;
+}
+/* 
+li {
+	padding-left: 8px;
+	background: var(--text);
+	list-style-type: circle;
+    color: var(--text);
+}
+
+li::marker {
+	background-color: var(--text);
+	padding: 16px;
 } */
+
+strong {
+	font-weight: 550;
+}
+
+p {
+	font-weight: 350;
+}
+
+h1 {
+	display: block;
+	font-size: 2em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	margin-left: 0;
+	margin-right: 0;
+	font-weight: 550;
+}
+h2 {
+	display: block;
+	font-size: 1.5em;
+	margin-top: 0.66em;
+	margin-bottom: 0.66em;
+	margin-left: 0;
+	margin-right: 0;
+	font-weight: 550;
+}
+h3 {
+	display: block;
+	font-size: 1.17em;
+	margin-top: 0.75em;
+	margin-bottom: 0.75em;
+	margin-left: 0;
+	margin-right: 0;
+	font-weight: 550;
+}
+h4 {
+	display: block;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	margin-left: 0;
+	margin-right: 0;
+	font-weight: 550;
+}
+h5 {
+	display: block;
+	font-size: 0.83em;
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+	margin-left: 0;
+	margin-right: 0;
+	font-weight: 550;
+}
+h6 {
+	display: block;
+	font-size: 0.67em;
+	margin-top: 2em;
+	margin-bottom: 2em;
+	margin-left: 0;
+	margin-right: 0;
+	font-weight: 550;
+}
+
+ol {
+    display: block;
+	list-style: decimal;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	padding-inline-start: 32px;
+}
+
+ul {
+    display: block;
+	list-style: initial;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 32px;
+}
+
