@@ -20,7 +20,7 @@
 	line-height: 150%;
 	scrollbar-color: var(--bg-elevation-1) transparent;
 	scrollbar-width: 16px;
-	scroll-behavior: smooth;
+	/* scroll-behavior: smooth; */
 	font-variant-ligatures: none;
 	box-sizing: border-box;
 	/* font-weight: 350; */

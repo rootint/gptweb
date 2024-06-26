@@ -1,5 +1,6 @@
-import { writable } from 'svelte/store';
+import { writable, get } from 'svelte/store';
 import { listChats, sendMessage, getMessages, changeInstruction, getInstruction } from '../api/api';
+import { goto } from '$app/navigation';
 
 function createChatStore() {
 	const messages = writable([]);
@@ -22,28 +23,26 @@ function createChatStore() {
 			// localStorage.setItem('chatId', id);
 			// localStorage.setItem('instruction', fetchedInstruction);
 			messages.set(fetchedMessages);
-		} else {
-			messages.set([]);
 		}
+		// } else {
+		// 	messages.set([]);
+		// }
 	}
 
 	async function handleSendMessage(id, messageToSend, fileToSend) {
 		awaitingForResponse.set(true);
 		messages.update((currentMessages) => {
+			// console.log('update', id, messageToSend);
 			// Return a new array with the new message appended
 			return [...currentMessages, { sender: 'user', text: messageToSend }];
 		});
-		// let currentChatId = '';
-		// const unsubscribe = chatId.subscribe((value) => {
-		// 	currentChatId = value;
-		// });
-		// unsubscribe();
 		let response = await sendMessage(id, messageToSend, fileToSend, 'user');
 		// Check if the HTTP response status indicates success before proceeding to read the stream
 		if (response.ok) {
 			const reader = response.body.getReader();
 			let decoder = new TextDecoder();
 			let completeResponse = '';
+			let extractedId = '';
 
 			// Continuously read from the stream
 			reader.read().then(function processText({ done, value }) {
@@ -54,30 +53,58 @@ function createChatStore() {
 
 				// Decode the stream chunk to text
 				let chunkText = decoder.decode(value, { stream: true });
-				// Accumulate the streamed chunks (optional)
-				completeResponse += chunkText;
 
-				// Log the chunk to console (optional)
-				// messages.update((currentMessages) => {
-				// 	if (currentMessages.at(-1).sender != 'user') {
-				// 		return [
-				// 			{ sender: 'assistant', text: completeResponse },
-				// 			...currentMessages.slice(0, currentMessages.length - 1)
-				// 		];
-				// 	} else {
-				// 		return [...currentMessages, { sender: 'assistant', text: completeResponse }];
-				// 	}
-				// });
-				// Since we're using reversed lists, prepend the streamed response.
+				if (id === '') {
+					if (extractedId !== '') {
+						completeResponse += chunkText;
+					} else {
+						// console.log(chunkText);
+						extractedId = chunkText.split(',')[0];
+						let chatName = chunkText.split(',')[1];
+						chatId.set(extractedId);
+						// console.log(id);
+						let newChats = get(chats);
+						newChats = [...newChats.reverse(), { chat_id: extractedId, name: chatName }];
+						chats.set(newChats);
+						goto('/' + extractedId);
+						// currentMessages = [{ sender: 'user', text: messageToSend }];
+					}
+				} else {
+					completeResponse += chunkText;
+				}
+
 				messages.update((currentMessages) => {
 					let lastMessage = currentMessages[currentMessages.length - 1];
 					if (lastMessage && lastMessage.sender === 'assistant') {
-						// Update last assistant message if it's still being received
-						currentMessages[currentMessages.length - 1].text = completeResponse;
+            if (id === '') {
+              currentMessages[currentMessages.length - 1].text = completeResponse;
+            } else {
+              currentMessages[currentMessages.length - 1].text = completeResponse;
+            }
 					} else {
-						// Otherwise, append new assistant message
-						currentMessages = [...currentMessages, { sender: 'assistant', text: completeResponse }];
+						// currentMessages = [...currentMessages, { sender: 'assistant', text: completeResponse }];
+						if (id === '') {
+							currentMessages = [
+								{ sender: 'user', text: messageToSend },
+								{ sender: 'assistant', text: completeResponse }
+							];
+						} else {
+							currentMessages = [
+								...currentMessages,
+								{ sender: 'assistant', text: completeResponse }
+							];
+						}
 					}
+					// currentMessages = [{ sender: 'user', text: messageToSend }, ...currentMessages];
+					// console.log('id', id, messageToSend, completeResponse);
+					// if (completeResponse === '' && id === '') {
+					// console.log('user', messageToSend);
+					// currentMessages = [{ sender: 'user', text: messageToSend }, ...currentMessages];
+					// }
+					// console.log('message', currentMessages);
+					// if (id === '') {
+					// 	return [{ sender: 'user', text: messageToSend }, ...currentMessages];
+					// }
 					return currentMessages;
 				});
 

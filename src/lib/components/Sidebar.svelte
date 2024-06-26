@@ -36,7 +36,6 @@
 		<div class="fade-container"></div>
 		<div class="scroll-container">
 			{#each chats as chat}
-				<!-- TODO: CHANGE THIS TO BUTTON someday -->
 				<button
 					on:click={() => selectChat(chat.chat_id)}
 					class="sidebar__chat-item"
@@ -87,6 +86,7 @@
 	.scroll-container {
 		margin-top: 40px;
 		padding-top: 24px;
+        padding-bottom: 24px;
 		height: 100%; /* А какого блядь хуя без этого он не респектит высоту */
 		overflow-y: scroll;
 		width: 100%;

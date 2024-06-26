@@ -2,6 +2,7 @@
 	import { ArrowUp } from 'lucide-svelte';
 	import { page } from '$app/stores';
 	import { chatStore } from '$lib/stores/chatStore';
+	import { afterUpdate, beforeUpdate, onMount, tick } from 'svelte';
 
 	const LINE_HEIGHT = 24;
 	let isActive = false;
@@ -20,6 +21,14 @@
 		isActive = false;
 	}
 
+	// afterUpdate(() => {
+	// 	console.log('afterupdate');
+	// });
+
+	// beforeUpdate(() => {
+	// 	console.log('beforeupdate');
+	// });
+
 	function handleSlashPress(event) {
 		if (event.key === '/' && !isActive) {
 			event.preventDefault();
@@ -33,7 +42,7 @@
 		message = '';
 		isButtonActive = false;
 		textareaHeight = LINE_HEIGHT;
-		await chatStore.handleSendMessage(chatId, messageCopy, null);
+		await chatStore.handleSendMessage(chatId === undefined ? '' : chatId, messageCopy, null);
 		// fileToSend = null;
 	}
 
@@ -53,6 +62,12 @@
 			textareaHeight = LINE_HEIGHT;
 		}
 	}
+
+	onMount(async () => {
+		setTimeout(() => {}, 0);
+		console.log('mounting...');
+		inputElement.focus();
+	});
 </script>
 
 <svelte:window on:keydown={handleSlashPress} />
@@ -98,7 +113,20 @@
 		border: rgba(0, 0, 0, 0) solid 1px;
 		transition: border-color 0.2s ease;
 		align-items: end;
+		z-index: 10;
+		position: relative;
 	}
+
+	/* .textbar::before {
+        content: ' ';
+		z-index: 2;
+		position: absolute;
+		top: -25px;
+		left: 0;
+		right: 0;
+		height: 24px;
+		background-image: linear-gradient(rgba(21, 21, 21, 0), rgba(21, 21, 21, 128));
+	} */
 	textarea {
 		width: 100%;
 		margin: 4px;

@@ -1,11 +1,9 @@
 <script>
-	import { onMount, beforeUpdate, afterUpdate } from 'svelte';
+	import { onMount, beforeUpdate, afterUpdate, tick } from 'svelte';
 	import { chatStore } from '$lib/stores/chatStore';
 	import { page } from '$app/stores';
 
 	import { marked } from 'marked';
-	import MessageTextbar from '../../lib/components/MessageTextbar.svelte';
-	import SvelteMarkdown from 'svelte-markdown';
 
 	let messageList = [];
 	$: chatId = $page.params.id;
@@ -15,27 +13,22 @@
 	beforeUpdate(() => {
 		if (div) {
 			const scrollableDistance = div.scrollHeight - div.offsetHeight;
-			autoscroll = div.scrollTop > scrollableDistance - 20;
+			autoscroll = div.scrollTop > scrollableDistance - 40;
 		}
 	});
 
 	afterUpdate(() => {
 		if (autoscroll) {
-			div.scrollTo(0, div.scrollHeight);
+			div.scroll(0, div.scrollHeight);
 		}
 	});
-
-	// const scrollToBottom = async (node) => {
-	// 	node.scroll({ top: node.scrollHeight, behavior: 'smooth' });
-	// };
 
 	onMount(async () => {
 		// console.log(chatId);
 		await chatStore.fetchChatMessages(chatId);
-		console.log(chatId);
+		// console.log(chatId);
 		const unsubscribe = chatStore.messages.subscribe(async (value) => {
 			messageList = value;
-			await tick();
 		});
 		return () => {
 			unsubscribe();
@@ -43,27 +36,25 @@
 	});
 </script>
 
-<div class="chat">
+<div class="chat" bind:this={div}>
 	<div class="gradient-mask"></div>
-	<div class="message-list" bind:this={div}>
+	<div class="message-list">
 		{#each messageList as message}
-			<div
-				class="message"
-				class:user={message.sender == 'user'}
-				class:assistant={message.sender != 'user'}
-			>
+			<div class="message" class:assistant={message.sender != 'user'}>
 				{#if message.sender != 'user'}
-					<!-- <div class="gpt-circle"></div> -->
+					<div class="gpt-circle"></div>
 					<div class="message-content">
 						{@html marked.parse(message.text)}
 					</div>
 				{:else}
-					{message.text}
+					<div class="user">
+						{message.text}
+					</div>
 				{/if}
 			</div>
 		{/each}
-		
 	</div>
+	
 </div>
 
 <style>
@@ -71,29 +62,37 @@
 		display: flex;
 		flex-direction: column;
 		align-items: start;
+		text-align: start;
 	}
 	.assistant {
-		margin-bottom: 24px;
+		/* padding-bottom: 24px; */
+		width: 100%;
 		/* background-color: red; */
 	}
 	.user {
-		margin-bottom: 32px;
+		/* margin-bottom: 32px; */
 		padding: 16px 24px;
 		border-radius: 12px;
 		background-color: var(--bg-elevation-1);
 		max-width: 544px;
 	}
 	.gpt-circle {
+		position: absolute;
 		width: 12px;
 		height: 12px;
 		border-radius: 12px;
 		background-color: var(--text);
-		margin-right: 8px;
+		margin-left: -20px;
+		margin-top: 5px;
+		/* margin-right: 8px;
 		margin-bottom: 1.5px;
-		margin-left: -21px;
+		margin-left: -21px; */
 	}
 	.message {
+		position: relative;
 		display: flex;
+		padding-bottom: 24px;
+		/* align-items: end; */
 		/* padding: 16px; */
 	}
 	.chat {
@@ -102,7 +101,8 @@
 		display: flex;
 		justify-content: center;
 		overflow-y: scroll;
-        padding-bottom: 24px;
+		padding-bottom: 24px;
+		position: relative;
 		/* align-items: center; */
 		width: 100%;
 	}

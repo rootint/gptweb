@@ -1,5 +1,5 @@
 // const BASE_URL = 'http://localhost:1337'; // Adjust this to your Flask app's URL
-const BASE_URL = 'https://27ee-3-68-250-185.ngrok-free.app';
+const BASE_URL = 'https://c89a-5-166-180-180.ngrok-free.app';
 // const BASE_URL = 'http://46.146.18.167:1337';
 
 // Helper function for fetching data
