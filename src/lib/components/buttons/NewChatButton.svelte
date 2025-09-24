@@ -11,5 +11,5 @@
 </script>
 
 <button on:click={createNewChat} class="navbar__btn" style="margin-right: 1.5rem">
-	<PencilLine color={$isSidebarShown ? '#ffffff' : '#a1a1a1'} size="22"></PencilLine>
+	<PencilLine color="#0D1D0CA8" size="22"></PencilLine>
 </button>

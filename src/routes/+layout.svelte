@@ -18,7 +18,7 @@
 		<Sidebar></Sidebar>
 		<div class="chat">
 			<slot />
-			<div class="gradient-mask-reversed"></div>
+			<!-- <div class="gradient-mask-reversed"></div> -->
 			<div class="textfield">
 				<MessageTextbar></MessageTextbar>
 			</div>

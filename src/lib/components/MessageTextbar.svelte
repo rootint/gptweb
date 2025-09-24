@@ -81,7 +81,7 @@
 		on:input={handleInput}
 		on:keydown={handleKeydown}
 		style="height: {textareaHeight}px;"
-		placeholder="Message ChatGPT..."
+		placeholder="Задайте вопрос..."
 	></textarea>
 	<button on:click={handleMessageSend} class="send-btn" class:btn-active={isButtonActive}>
 		<ArrowUp size="22" color={isButtonActive ? '#111111' : '#212121'}></ArrowUp>
@@ -90,7 +90,7 @@
 
 <style>
 	.btn-active {
-		background-color: var(--text) !important;
+		background-color: #ADDDA6 !important;
 		border: none;
 	}
 	.send-btn {
@@ -133,7 +133,7 @@
 		margin-left: 12px;
 		box-sizing: border-box;
 		font-weight: 350;
-		background-color: var(--bg-elevation-1);
+		background-color: #00000000;
 		justify-content: center;
 		align-items: center;
 		border: none;

@@ -9,7 +9,7 @@
 	<div class="flex">
 		<SidebarButton></SidebarButton>
 		<NewChatButton></NewChatButton>
-		<p class="model-name">GPT-4o</p>
+		<p class="model-name">Material GPT</p>
 	</div>
 	<div class="flex">
 		<SettingsButton></SettingsButton>
@@ -19,7 +19,7 @@
 <style>
 	.model-name {
 		font-size: 18px;
-		color: var(--button);
+		color: #0D1D0CA8;
 		display: flex;
 		align-items: center;
 		justify-content: center;

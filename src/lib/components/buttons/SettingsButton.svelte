@@ -5,8 +5,8 @@
 	let instruction = 'You are an honest and helpful assistant.';
 
 	function toggleSettingsMenu() {
-		isToggled = !isToggled;
-		console.log('Settings toggled');
+		// isToggled = !isToggled;
+		// console.log('Settings toggled');
 		// chatStore.handleChangeInstruction(instruction);
 	}
 </script>
@@ -14,7 +14,7 @@
 <div class="settings-container">
 	<button on:click={toggleSettingsMenu} class="navbar__btn" class:enabled={isToggled}>
 		<div class="icon-wrapper" class:spin={isToggled}>
-			<Settings color={isToggled ? '#f1f1f1' : '#a1a1a1'} size="22"></Settings>
+			<Settings color="#0D1D0CA8" size="22"></Settings>
 		</div>
 	</button>
 	{#if isToggled}

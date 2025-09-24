@@ -36,7 +36,7 @@
 
 <div class="card-grid">
 	<div class="card" on:click={handleScientificPaper}>
-		<FileText size="22" color="#f25f5c"></FileText>
+		<FileText size="22" color="#0D1D0C80"></FileText>
 		<input
 			type="file"
 			bind:this={file}
@@ -44,19 +44,11 @@
 			accept="application/pdf"
 			style="display: none;"
 		/>
-		<p class="card-title">Help me understand a scientific paper</p>
+		<p class="card-title">Найди сплав, похожий на CoCrNi</p>
 	</div>
 	<div class="card">
-		<Rocket size="22" color="#a4f25c"></Rocket>
-		<p class="card-title">Give me startup advice</p>
-	</div>
-	<div class="card">
-		<Library size="22" color="#5ceff2"></Library>
-		<p class="card-title">Use the library for research</p>
-	</div>
-	<div class="card">
-		<MessageSquare size="22" color="#a95cf2"></MessageSquare>
-		<p class="card-title">Just chat about something</p>
+		<Rocket size="22" color="#0D1D0C80"></Rocket>
+		<p class="card-title">Какой сплав подойдет для самолетов</p>
 	</div>
 </div>
 
@@ -65,7 +57,7 @@
 		font-size: 16px;
 		font-weight: 350;
 		margin-top: 24px;
-		color: rgba(255, 255, 255, 0.75);
+		color: var(--text);
 	}
 	.card {
 		background-color: var(--bg-elevation-1);
@@ -75,7 +67,7 @@
 		transition: border-color 0.2s ease;
 		display: flex;
 		flex-direction: column;
-		max-width: 200px;
+		max-width: 240px;
 	}
 	.card:hover {
 		border-color: var(--highlight);
