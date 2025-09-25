@@ -11,7 +11,6 @@
 	let isButtonActive = false;
 	let textareaHeight = LINE_HEIGHT;
 	let responsePending = false;
-	$: chatId = $page.params.id;
 
 	function handleFocus() {
 		isActive = true;
@@ -42,8 +41,7 @@
 		message = '';
 		isButtonActive = false;
 		textareaHeight = LINE_HEIGHT;
-		await chatStore.handleSendMessage(chatId === undefined ? '' : chatId, messageCopy, null);
-		// fileToSend = null;
+		await chatStore.handleSendMessage(messageCopy);
 	}
 
 	function handleKeydown(event) {

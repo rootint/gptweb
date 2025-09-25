@@ -5,7 +5,7 @@
     import { chatStore } from '$lib/stores/chatStore';
 
 	function createNewChat() {
-        chatStore.chatId.set('');
+        chatStore.clearMessages();
 		goto('/');
 	}
 </script>

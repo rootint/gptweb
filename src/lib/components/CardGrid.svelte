@@ -26,7 +26,7 @@
 			// const result = await response.json();
 			// console.log('File uploaded successfully:', result);
 			// alert('File uploaded successfully!');
-			await chatStore.handleSendMessage('', 'Scientific paper', event.target.files[0]);
+			await chatStore.handleSendMessage('Scientific paper');
 		} catch (error) {
 			console.error('Error uploading file:', error);
 			alert('Failed to upload file.');
@@ -46,7 +46,7 @@
 		/>
 		<p class="card-title">Найди сплав, похожий на CoCrNi</p>
 	</div>
-	<div class="card">
+	<div class="card" on:click={() => chatStore.handleSendMessage('Какой сплав подойдет для самолетов')}>
 		<Rocket size="22" color="#0D1D0C80"></Rocket>
 		<p class="card-title">Какой сплав подойдет для самолетов</p>
 	</div>
@@ -68,6 +68,7 @@
 		display: flex;
 		flex-direction: column;
 		max-width: 240px;
+		cursor: pointer;
 	}
 	.card:hover {
 		border-color: var(--highlight);

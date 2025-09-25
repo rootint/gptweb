@@ -3,7 +3,6 @@
 	import '../css/styles.css';
 	import '../css/fonts.css';
 	import Navbar from '$lib/components/Navbar.svelte';
-	import Sidebar from '$lib/components/Sidebar.svelte';
 	import MessageTextbar from '../lib/components/MessageTextbar.svelte';
 </script>
 
@@ -15,7 +14,6 @@
 <main>
 	<Navbar></Navbar>
 	<div class="main-container">
-		<Sidebar></Sidebar>
 		<div class="chat">
 			<slot />
 			<!-- <div class="gradient-mask-reversed"></div> -->

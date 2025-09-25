@@ -1,6 +1,6 @@
 // const BASE_URL = 'http://localhost:1337'; // Adjust this to your Flask app's URL
-const BASE_URL = 'https://74b1-5-166-180-180.ngrok-free.app';
-// const BASE_URL = 'http://46.146.18.167:1337';
+// const BASE_URL = 'https://74b1-5-166-180-180.ngrok-free.app';
+const BASE_URL = 'http://158.160.2.64:5000';
 
 // Helper function for fetching data
 async function fetchWithTimeout(resource, options = {}) {
@@ -13,61 +13,23 @@ async function fetchWithTimeout(resource, options = {}) {
 }
 
 export async function listChats() {
-	const response = await fetchWithTimeout(`${BASE_URL}/list-chats`, {
-		method: 'GET'
-	});
-	return response.json();
-}
-
-export async function sendMessage(chatId, text, file, sender) {
-	const formData = new FormData();
-	formData.append('chat_id', chatId);
-	formData.append('text', text);
-	formData.append('sender', sender);
-	formData.append('file', file);
-
-	// const response = await fetchWithTimeout(`${BASE_URL}/send-receive-message`, {
-	// 	method: 'POST',
-	// 	headers: {
-	// 		'Content-Type': 'application/json'
-	// 	},
-	// 	body: JSON.stringify({
-	// 		chat_id: chatId,
-	// 		text,
-	// 		sender
-	// 	})
+  return 0;
+	// const response = await fetchWithTimeout(`${BASE_URL}/`, {
+	// 	method: 'GET'
 	// });
-	const response = await fetchWithTimeout(`${BASE_URL}/send-receive-message`, {
-		method: 'POST',
-		// The 'Content-Type' header will be set automatically by the browser with the proper 'boundary'.
-		body: formData
-	});
-	return response;
+	// return response.json();
 }
 
-export async function getMessages(chatId) {
-	const response = await fetchWithTimeout(`${BASE_URL}/get-messages/${chatId}`, {
-		method: 'GET'
-	});
-	return response.json();
-}
-
-export async function changeInstruction(chatId, instruction) {
-	const response = await fetchWithTimeout(`${BASE_URL}/change-instruction/${chatId}`, {
+export async function sendMessage(text) {
+	const response = await fetchWithTimeout(`${BASE_URL}/ask`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify({
-			instruction: instruction
+			query: text
 		})
 	});
-	return response.json();
-}
-
-export async function getInstruction(chatId) {
-	const response = await fetchWithTimeout(`${BASE_URL}/get-instruction/${chatId}`, {
-		method: 'GET'
-	});
-	return response.json();
+	const data = await response.json();
+	return data;
 }
