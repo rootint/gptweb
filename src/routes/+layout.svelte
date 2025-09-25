@@ -4,6 +4,26 @@
 	import '../css/fonts.css';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import MessageTextbar from '../lib/components/MessageTextbar.svelte';
+	import { chatStore } from '$lib/stores/chatStore';
+	import { onMount, beforeUpdate, afterUpdate } from 'svelte';
+	import { marked } from 'marked';
+
+	let messageList = [];
+	let div;
+	let autoscroll = false;
+
+	// Show CardGrid when there are no messages
+	$: showCardGrid = messageList.length === 0;
+
+	onMount(async () => {
+		const unsubscribe = chatStore.messages.subscribe(async (value) => {
+			messageList = value;
+			console.log(messageList);
+		});
+		return () => {
+			unsubscribe();
+		};
+	});
 </script>
 
 <svelte:head>
@@ -16,10 +36,12 @@
 	<div class="main-container">
 		<div class="chat">
 			<slot />
-			<!-- <div class="gradient-mask-reversed"></div> -->
-			<div class="textfield">
-				<MessageTextbar></MessageTextbar>
-			</div>
+			<div class="gradient-mask-reversed"></div>
+			{#if showCardGrid}
+				<div class="textfield">
+					<MessageTextbar></MessageTextbar>
+				</div>
+			{/if}
 		</div>
 	</div>
 </main>
@@ -33,7 +55,7 @@
 		right: 0;
 		/* width: 100%; */
 		height: 24px;
-		background-image: linear-gradient(rgba(21, 21, 21, 0), rgba(21, 21, 21, 255));
+		background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 255));
 	}
 	.main-container {
 		display: flex;
@@ -41,7 +63,7 @@
 		width: 100vw;
 	}
 	.chat {
-        position: relative;
+		position: relative;
 		width: 100vw;
 		height: 100vh;
 		display: flex;
