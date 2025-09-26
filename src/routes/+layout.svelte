@@ -6,7 +6,6 @@
 	import MessageTextbar from '../lib/components/MessageTextbar.svelte';
 	import { chatStore } from '$lib/stores/chatStore';
 	import { onMount, beforeUpdate, afterUpdate } from 'svelte';
-	import { marked } from 'marked';
 
 	let messageList = [];
 	let div;

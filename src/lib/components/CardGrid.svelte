@@ -35,20 +35,13 @@
 </script>
 
 <div class="card-grid">
-	<div class="card" on:click={handleScientificPaper}>
-		<FileText size="22" color="#0D1D0C80"></FileText>
-		<input
-			type="file"
-			bind:this={file}
-			on:change={handleFileChange}
-			accept="application/pdf"
-			style="display: none;"
-		/>
-		<p class="card-title">Найди сплав, похожий на CoCrNi</p>
-	</div>
-	<div class="card" on:click={() => chatStore.handleSendMessage('Какой сплав подойдет для самолетов')}>
+	<div class="card" on:click={() => chatStore.handleSendMessage('Propose alloys similar in properties to CoCrNi')}>
 		<Rocket size="22" color="#0D1D0C80"></Rocket>
-		<p class="card-title">Какой сплав подойдет для самолетов</p>
+		<p class="card-title">Propose alloys similar in properties to CoCrNi</p>
+	</div>
+	<div class="card" on:click={() => chatStore.handleSendMessage('Propose new materials for the development of a wide range of next-generation optoelectronic devices.')}>
+		<Rocket size="22" color="#0D1D0C80"></Rocket>
+		<p class="card-title">Propose new materials for the development of a wide range of next-generation optoelectronic devices.</p>
 	</div>
 </div>
 

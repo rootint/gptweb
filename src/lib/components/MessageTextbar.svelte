@@ -79,7 +79,7 @@
 		on:input={handleInput}
 		on:keydown={handleKeydown}
 		style="height: {textareaHeight}px;"
-		placeholder="Задайте вопрос..."
+        placeholder="Ask a question..."
 	></textarea>
 	<button on:click={handleMessageSend} class="send-btn" class:btn-active={isButtonActive}>
 		<ArrowUp size="22" color={isButtonActive ? '#111111' : '#212121'}></ArrowUp>
